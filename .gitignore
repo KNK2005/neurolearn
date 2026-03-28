@@ -3,11 +3,16 @@ node_modules/
 dist/
 frontend/node_modules/
 frontend/dist/
+frontend/frontend/node_modules/
+frontend/.vite/
 
 # Python
 __pycache__/
 *.pyc
 .venv/
+backend/__pycache__/
+backend/api/__pycache__/
+backend/app/__pycache__/
 
 # Environments
 .env
