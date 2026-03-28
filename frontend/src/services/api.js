@@ -28,6 +28,19 @@ function normalizeDetail(payload) {
   return "";
 }
 
+function extractDetailFromText(rawText) {
+  if (!rawText) {
+    return "";
+  }
+
+  try {
+    const payload = JSON.parse(rawText);
+    return normalizeDetail(payload) || rawText;
+  } catch {
+    return rawText;
+  }
+}
+
 async function request(path, options = {}) {
   const response = await fetch(`${API_URL}${path}`, {
     headers: {
@@ -38,14 +51,8 @@ async function request(path, options = {}) {
   });
 
   if (!response.ok) {
-    let detail = "";
-    try {
-      const payload = await response.json();
-      detail = normalizeDetail(payload);
-    } catch {
-      const message = await response.text();
-      detail = message || "";
-    }
+    const rawBody = await response.text();
+    const detail = extractDetailFromText(rawBody);
 
     if (response.status === 429) {
       const retryAfter = response.headers.get("Retry-After");
