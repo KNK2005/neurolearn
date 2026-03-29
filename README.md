@@ -1,103 +1,204 @@
-# NeuroLearn AI
+# 📘 NeuroLearn – Behavior-Driven Adaptive Learning Platform
 
-NeuroLearn AI is a full-stack adaptive learning platform with:
-- React frontend (Vite)
-- FastAPI backend
-- MongoDB persistence
-- Groq-powered AI features
+## 🚀 Overview
 
-## Project Paths
+NeuroLearn is an AI-powered adaptive learning platform that detects **conceptual knowledge gaps using learner behavior** instead of relying solely on test scores.
 
-- frontend app: frontend/
-- backend app: backend/
-- vercel config: vercel.json
-- root ignore rules: .gitignore
+It combines:
+- **Behavioral analysis**
+- **LLM-based evaluation**
+- **Dynamic content generation**
 
-## API Path Setup
+to deliver **personalized learning experiences in real time**.
 
-All backend routes are mounted under /api:
-- /api/health
-- /api/auth/*
-- /api/diagnostic/*
-- /api/user/*
-- /api/learning/*
+---
 
-Frontend API client uses:
-- VITE_API_URL (defaults to /api)
+## 🎯 Problem Statement
 
-This means frontend calls like /auth/login become:
-- /api/auth/login
+Traditional learning systems:
+- rely on quiz scores
+- follow fixed learning paths
+- fail to detect hidden misunderstandings
 
-## Local Development
+This leads to:
+- false confidence
+- inefficient learning
+- lack of personalization
 
-### Backend
+---
 
-From backend/:
+## 💡 Solution
 
-1. Install dependencies
-2. Run server
+NeuroLearn introduces a **behavior-driven learning intelligence layer** that:
 
-Example:
+1. Generates diagnostic questions for any topic  
+2. Evaluates user responses using AI  
+3. Detects:
+   - weak concepts  
+   - misconceptions  
+   - confidence gaps  
+4. Generates a **personalized learning plan**
 
-```powershell
-c:/Users/Kaush/Desktop/ET-Hackathon/.venv/Scripts/python.exe -m pip install -r requirements.txt
-c:/Users/Kaush/Desktop/ET-Hackathon/.venv/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
+---
+
+## 🧠 Key Features
+
+### ✅ Topic-Based Diagnostic System
+- User enters any topic
+- AI generates 3 high-quality diagnostic questions:
+  - Conceptual
+  - Application
+  - Reasoning
+
+---
+
+### ✅ AI-Powered Evaluation
+- Analyzes:
+  - answer quality  
+  - correctness  
+  - confidence level  
+- Detects:
+  - misconceptions  
+  - weak areas  
+  - learning patterns  
+
+---
+
+### ✅ Personalized Learning Plan
+- Generates:
+  - simple explanations  
+  - step-by-step learning path  
+  - practice questions  
+  - next steps  
+
+---
+
+### ✅ User Learning History
+- Stores:
+  - topics learned  
+  - strengths & weaknesses  
+  - progress level  
+- Enables:
+  - resume learning  
+  - continuous personalization  
+
+---
+
+## 🏗️ System Architecture
+
+Frontend (React + Vite)
+        ↓
+Backend (FastAPI)
+        ↓
+LLM Engine (Groq API)
+        ↓
+MongoDB (User Data + History)
+
+---
+
+## ⚙️ Tech Stack
 
 ### Frontend
+- React.js (Vite)
+- Tailwind CSS
 
-From frontend/:
+### Backend
+- FastAPI (Python)
+- Mangum (for serverless deployment)
 
-1. Install dependencies
-2. Start Vite dev server
+### AI / LLM
+- Groq API (LLaMA models)
 
-Example:
+### Database
+- MongoDB
 
-```powershell
-npm.cmd install
-npm.cmd run dev
-```
+### Deployment
+- Vercel (Frontend + Serverless Backend)
 
-Vite proxy maps /api to http://127.0.0.1:8000 for local use.
+---
 
-## Environment Variables
+## 📁 Project Structure
 
-### Backend (backend/.env)
+root/
+├── frontend/        # React app
+├── backend/         # FastAPI backend
+│   └── api/
+│       └── index.py # Vercel serverless entry
+├── vercel.json
+├── .gitignore
 
-Required for AI + DB:
-- GROQ_API_KEY
-- GROQ_MODEL
-- GENAI_USE_LIVE
-- MONGODB_URI
-- MONGODB_DB
+---
 
-### Frontend (frontend/.env)
+## 🔄 How It Works
 
-- VITE_API_URL=/api
+1. User enters a topic  
+2. AI generates diagnostic questions  
+3. User submits answers + confidence  
+4. AI evaluates responses  
+5. System generates personalized learning plan  
+6. Progress is stored for future sessions  
 
-## Vercel Deployment Path Setup
+---
 
-vercel.json rewrites API requests to the FastAPI serverless entrypoint:
-- source: /api/(.*)
-- destination: /backend/api/index.py
+## 🧪 Example Flow
 
-### Important Vercel Settings
+Input: "Recursion"
 
-Use one Vercel project with:
-- Root Directory: repository root (ET-Hackathon)
+→ AI generates questions
+→ User answers
+→ System detects:
+   - weak in base cases
+→ AI responds with:
+   - explanation
+   - easier problem
+   - next steps
 
-If Root Directory is set to frontend/ only, /api routes will return NOT_FOUND because backend/ is outside that root.
+---
 
-## Secrets and GitHub Safety
+## 🛠️ Setup Instructions
 
-- Keep real secrets in local backend/.env and Vercel env vars.
-- Do not commit API keys.
-- .gitignore excludes .env files and build/cache folders.
+### 1. Clone Repository
+git clone https://github.com/KNK2005/neurolearn.git
+cd neurolearn
 
-## Quick Verification Checklist
+### 2. Frontend Setup
+cd frontend
+npm install
+npm run dev
 
-After deploy:
+### 3. Backend Setup
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 
-1. Open /api/health on your Vercel domain and confirm {"status":"ok"}
-2. Test signup at /api/auth/signup via frontend Create Account flow
-3. Confirm Vercel env vars are set for backend
+---
+
+## 🔐 Environment Variables
+
+Backend:
+GROQ_API_KEY=your_api_key
+GROQ_MODEL=your_model_name
+GENAI_USE_LIVE=true
+MONGODB_URI=your_mongodb_uri
+MONGODB_DB=your_db_name
+
+Frontend:
+VITE_API_URL=/api
+
+---
+
+## 🚀 Deployment
+
+Configured for deployment on Vercel.
+
+---
+
+## 🧭 One-Line Summary
+
+NeuroLearn is an AI-powered adaptive learning system that detects knowledge gaps through behavior and delivers personalized learning experiences in real time.
+
+---
+
+## 👨‍💻 Author
+
+Kaushik Nishaanth Kumar
